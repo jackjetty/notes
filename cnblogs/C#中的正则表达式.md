@@ -1,0 +1,1 @@
+* Regex.IsMatch(string input, string pattern)

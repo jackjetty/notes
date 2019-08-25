@@ -1,0 +1,1 @@
+* 导入在Windows资源管理器手动clone的project后，可能会有弹窗报错，然后console中会说"Auto share git projects." 、"Connecting Git team provider failed."等错误，应该是Eclipse的git插件问题，没有成功和"Team"下的功能集成

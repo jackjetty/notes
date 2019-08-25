@@ -1,0 +1,23 @@
+* 常用于需要操作html元素的情况，如
+    * web自动化测试
+    * 网络爬虫
+    * 分析/操作html
+* 语法
+    * //：从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。
+    * /：从根节点选取。
+    * []：谓语，被嵌在方括号中。用来查找某个特定的节点或者包含某个指定的值的节点。
+    * @：选取属性。可用在谓语中，也可以单独使用
+        * @id
+        * @class
+        * @href
+        * @value
+    * contains：多用于@属性的模糊匹配
+    * text()
+* 例子
+    * //a[@class="c_b_p_desc_readmore"]
+    * //tr[contains(@id,"post-row-")]
+    * //input[@id="Editor_Edit_txbTitle"]/@value
+    * //textarea[@id="Editor_Edit_EditorBody"]/text()
+    * a[text()='百度搜索'] 
+* 工具
+    * 360、Firefox通常有辅助xpath测试的扩展/插件

@@ -1,0 +1,63 @@
+#1. 概述
+* Angular的页面，是按照module一层层嵌套组织下来的
+
+#2.  风格1
+* **src/**
+    * **app/**
+        * *shared/*
+        * *core/*
+        * *error/*
+        * module1/
+        * module2/
+            * module2.module.ts
+            * module2.routing.ts
+            * submodule1/
+                * submodule1.component.html
+                * submodule1.component.css
+                * submodule1.component.ts
+                * submodule1.component.spec.ts
+            * submodule2/
+                * submodule2.component.html
+                * submodule2.component.css
+                * submodule2.component.ts
+                * submodule2.component.spec.ts
+        * **app-routing.module.ts / app.routing.ts**
+        * **app.module.ts**
+        * **app.component.html**
+        * **app.component.css**
+        * **app.component.ts**
+        * *app.component.spec.ts*
+
+#3. 风格2
+* **src/**
+    * **app/**
+        * modules/
+            * *shared/*
+            * *core/*
+            * module1/
+                * components/
+                    * component1/
+                        * component1.component.html
+                        * component1.component.css
+                        * component1.component.ts
+                        * component1.component.spec.ts
+                    * component2/
+                        * component2.component.html
+                        * component2.component.css
+                        * component2.component.ts
+                        * component2.component.spec.ts
+                * models/
+                    * model1.model.ts
+                    * model2.model.ts
+                * pages/
+                    * module1.component.html
+                    * module1.component.css
+                    * module1.component.spec.ts
+                * module1.component.css
+                * module1.component.ts
+        * **app-routing.module.ts / app.routing.ts**
+        * **app.module.ts**
+        * **app.component.html**
+        * **app.component.css**
+        * **app.component.ts**
+        * *app.component.spec.ts*

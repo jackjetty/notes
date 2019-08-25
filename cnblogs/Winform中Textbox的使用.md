@@ -1,0 +1,1 @@
+* 可以通过设置边框、颜色、Readonly为true，来模拟Label，因为Label不支持复制文本
