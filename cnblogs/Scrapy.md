@@ -1,5 +1,7 @@
 * 安装
     * pip install Scrapy
+* 创建项目
+    * scrapy startproject projectname
 * 原理
     * ![scrapy workflow](https://img2018.cnblogs.com/blog/106125/201908/106125-20190824194557567-1508939196.png)
     * scrapy.cfg
@@ -37,6 +39,7 @@
             * 做资源回收等处理
 * 运行
     * scrapy crawl spidername -o items.json
+        * spidername是spiders目录下某个想要运行的spider的名字的前半部分，比如想运行cnblogs_spiders.py的话，就用命令scrapy crawl cnblogs。
         * 即使是没有实现item对应的pipeline，也可能用默认的持久化行为存到items.json中，使用 -o items.json参数即可。
 * 调试
     * 使用cmd执行scrapy命令的话，不便于调试

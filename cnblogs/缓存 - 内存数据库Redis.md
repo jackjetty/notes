@@ -1,4 +1,7 @@
-* 客户端
+* 安装
+    * 想用redis-server命令的话，先设好环境变量
+    * 用redis-server --heapdir C:\redis\mta_heap命令设置完堆文件存储位置后，顺带就把redis启动了
+* 客户端工具
     * Redis Desktop Manager
         * [官网](https://redisdesktop.com/)
         * 新版的收费，或者要分享什么的。0.8.8的旧版才免费？：https://github.com/uglide/RedisDesktopManager/releases/tag/0.8.8
@@ -6,9 +9,13 @@
         * 也可以使用redis-cli命令行工具，在连接上右击选择Console
     * Redis Studio
         * https://github.com/cinience/RedisStudio/releases
-* 命令行
+* 命令行工具
     * 可以使用redis-cli命令行工具，是redis安装后带的一个工具，类似的还有redis-server等
     * [Redis 命令参考 ](http://redisdoc.com/configure/index.html)
+    * 常用命令
+        * redis-cli
+        * auth 123456
+        * keys
 * 使用
     * 有db0到db15共16个Database，Database下面可以有多个Namespace（可以嵌套），每个Namespace下面可以有好多Key。
     * 每个Key可以设置过期时间TTL

@@ -114,7 +114,14 @@
             * 本质是重新设定多次修改历史的基准点到目标分支的最新点。
             * 如果做了多次改动，合并到目标分支后，目标分支会产生原分支上的同样多的commit，就像是把原分支剪了下来接到了目标分支，在每个新的点上都要依次解决原分支当时点的代码和目标分支最新代码（新的基准点的代码）的冲突。
             * **和merge还有一个区别是，rebase就像是指针，所谓的重新定义了基准点，就是两个分支又跑到了同一个点？**
-    * pull request和用的是merge还是rebase没关系，就是要把你在本地分支间做的这个合并操作在远程仓库的分支上也做一遍，需要一些人做code review和批准什么的。
     * **pull和fetch的区别**
         * git fetch只是把远程orgin分支同步到本地仓库，但并不会影响对应的本地分支。
         * git fetch不会进行合并，执行后需要手动执行git merge合并，而git pull拉取远程分之后直接与本地分支进行合并。更准确地说，git pull是使用给定的参数运行git fetch，并调用git merge将检索到的分支头合并到当前分支中。
+* Pull Request
+    * 操作流程和用的是哪个中心仓库系统有关
+        * 有的如Bitbucket需要本地先merge，然后在push这个merge动作时提pull request，没记错吧？？
+        * 有的如TFS是本地不需要先merge，只需要commit和push自己的改动，然后提pull request，最后complete了pull request后，远程仓库自行进行merge，然后你再pull到本地。
+            * TFS中你可以在一个pull request中多次commit和push代码，都会体现到pull request中。
+    * 注意要及时从目标分支把别人的改动merge到自己的分支，至少要在complete pull request之前进行一次，大部分系统不允许在pull request自动完成时有冲突。
+        * 有的系统如TFS如果检测到当前pull request中的代码与目标分支的代码有冲突时，会在pull request页面上提醒你，让你在complete之前手动merge目标分支到你的分支一次并解决冲突。
+    * pull request和用的是merge还是rebase没关系，就是要把你在本地分支间做的这个合并操作在远程仓库的分支上也做一遍，需要一些人做code review和批准什么的。

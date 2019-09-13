@@ -20,11 +20,13 @@
         * **样式不在组件范围内。**
 * 根本原理
     * [Angular中的ViewEncapsulation是什么？](https://baijiahao.baidu.com/s?id=1603683113292930767&wfr=spider&for=pc)
+    * Angular框架为了组件之间的隔离，可能会给组件内的元素增加自动生成的属性，然后通过属性选择器限制该组件内属性的作用范围，如_nghost-c0、_ngcontent-c0等就是自动生成的属性，后面的序号用于区分不同的组件。**如果修改了ViewEncapsulation，那么这个行为会有所不同，比如设为none的话，就不会自动增加属性了**。
     * Shadow DOM与Angular中的ViewEncapsulation
         * Shadow DOM将 HTML 封装成HTML元素。使用Shadow DOM，标记，样式和行为被限制到元素，并且不会与DOM的其他节点发生冲突。Shadow DOM是Web Components的一部分，它封装了元素的样式和登录。
         * **Angular有它自己的模拟，它可以模拟Shadow DOM。为了模拟Shadow DOM并封装样式，Angular提供了View Encapsulation的类型。**
         * 理论上，Angular组件不是Web组件
     * Angular的component封装了web前端开发的底层细节，模拟成了桌面程序的样子，把每个component作为了一个整体，为了减少开发复杂度，默认单向隔离了component和上层之间的样式关联
+    * 注意：**不要轻易修改component的ViewEncapsulation，因为多个开发人员进行开发时，容易不小心影响到外层样式。最好使用Emitter等方式让子组件可以修改父组件的变量，然后父组件在ngClass中用该变量来判断是否设置特定的样式class。**
 * 修改某个component的ViewEncapsulation
 
 ```

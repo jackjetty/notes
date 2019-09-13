@@ -24,3 +24,5 @@
 * web页面中的height设置比较特殊
     * 不像width，可以简单的通过百分比或者像素数来控制
     * 父元素的height由子元素的height决定
+* 获取、操作滚动条位置
+    * xxx.scrollTop = 200;
