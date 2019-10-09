@@ -38,7 +38,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
     * 在ts文件中定义OnScroll函数
         * 主要用来更新view对应的model数据
-        * 根据实际情况，可能要再次分页做数据请求；也可能第一次时已拿到所有的数据，只需要再追加一页的数据即可。
+        * 怎么判断已经到最后一页了？可能是新的数据和前一次相同就认为已经是所有数据了吧。
+        * 根据实际情况，可能要再次分页做数据请求；也可能第一次时已拿到全量数据，只需要再从本地全量数据中多过滤出一页的数据即可。
 
 ```
 import { Component, OnInit, OnDestroy } from '@angular/core';

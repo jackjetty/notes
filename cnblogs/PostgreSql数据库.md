@@ -2,7 +2,7 @@
     * 从上到下为：数据库（Database） - 模式（Schema） - Table（表）
     * properties文件中配的地址是到数据库一级：spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/postgres
     * 代码中连接成功后，如果需要使用jdbc或mybatis等方式使用sql，操作表时需要指定模式（Schema）：SELECT id, name, password FROM **test.**user
-* 表名字段名尽量要避免postgres的关键字
+* 表名字段名尽量要避免postgres的关键字，如**user**，会创建失败。！！！
 * 定义表名、字段名时要小心**双引号**
     * 虽然管理端上看不出来，但是其实是不同的，会查不到
     * **标准的SQL是不区分大小写的，但PostgresSQL支持使用双引号来保持大小写**。但是PostgreSQL对于数据库中对象的名字允许使用支持大小写区分的定义和引用方法。方式就是在DDL中用双引号把希望支持大小的对象名括起来。
@@ -13,6 +13,8 @@
                 * **如果表是通过PostgreSQL的pgAdmin III 工具创建的话，缺省是按照有双引号的方式创建对象的，所以DLL里面必须也要按照有双引号的方式使用。**但是这种写法不是标准的，如果是通过一些通用库函数访问数据库的话，会不被支持。
             * **不推荐在DDL里用双引号的方式创建区分大小写的对象。**
             * PostgreSQL给出的建议是SQL的key word用大写，其他的名称全部使用小写。
+* 用户管理
+    * 在PostgreSql数据库中叫做Login Role，可以自行增删改并设置合适的权限
 * 时间戳和时间之间的转换
 
 ```

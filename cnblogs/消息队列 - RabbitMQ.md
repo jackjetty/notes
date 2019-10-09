@@ -14,6 +14,7 @@
     * 一个Exchange可以绑定到多个Queue
     * 有四种Exchange类型，也就是有四种绑定方式/规则
         * 都是用RoutingKey（用哪一个Exchange）和BindingKey（和Exchange Type结合起来判断到哪一个Queue）来判断消息要通过本Exchange路由到哪些队列上
+        * **E.mta.isb.varset.#会包含E.mta.isb.varset.XXX.#。其中E.mta.isb.varset部分是Exchange的名字，#是BindingKey的名字。**
     * 使用前需要把Exchange、Queue及它们的RoutingKey、BindingKey设置好，就像数据库要先建好。
 * Queue
     * 最终存储消息的队列，可以有很多个

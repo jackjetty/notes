@@ -102,6 +102,7 @@ public class Assignment {
         * getAllByTenantIdAndAssetId这种其实是利用了JPA的命名查询功能，可以指定通过哪些列来查询，还可以使用like功能。
         * @Query注解其实是JPA提供查询语言的JPQL，与Hibernate提供的HQL十分接近。
         * JPA（Hibernate）其实慢慢被mybatis替代了？？
+        * 可以通过给Repo的函数传入Pageable参数进行分页，其可来自于接口调用
 
 ```
 @Repository
@@ -122,7 +123,6 @@ public interface AssignmentRepository extends CrudRepository<Assignment, Long> {
 	List<String> getAllAssetsWithActiveWorkplan(
 			@Param("tenant_id") String tenantId,
 			@Param("end_date") Timestamp endDate);
-
 }
 
 public interface MissingWorkPieceRepository extends CrudRepository<MissingWorkPiece, Long> {
@@ -135,4 +135,31 @@ public interface MissingWorkPieceRepository extends CrudRepository<MissingWorkPi
 	void deleteByAssetIdAndTenantIdAndDate(String assetId, String tenantId, Timestamp date);
 	
 }
+```
+
+```
+https://dimcdev-mmmui-dimcdev.cn1.mindsphere-in.cn/v3/alarms?from=1570377600000&to=1570511445993&size=9007199254740991
+
+
+    @RequestMapping(value = "", method = RequestMethod.POST, produces = APPLICATION_JSON_VALUE)
+    @ApiOperation("Get alarms for agents by time range.")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiResponses(value = { @ApiResponse(code = SC_OK, message = "OK", response = AlarmProtocol.class),
+            @ApiResponse(code = SC_BAD_REQUEST, message = Messages.BAD_REQUEST_MESSAGE, response = String.class),
+            @ApiResponse(code = SC_UNAUTHORIZED, message = Messages.UNAUTHORIZED_MESSAGE, response = String.class),
+            @ApiResponse(code = SC_FORBIDDEN, message = Messages.FORBIDDEN_MESSAGE, response = String.class),
+            @ApiResponse(code = SC_NOT_FOUND, message = Messages.NOT_FOUND_MESSAGE, response = String.class) })
+    // @PreAuthorize("#oauth2.hasScope(this.readRole)")
+    public List<AlarmProtocol> getAlarmsByAgentIdsAndTimeRange(
+            @PageableDefault(size = Integer.MAX_VALUE) final Pageable pageable,
+            @ApiParam(required = true)  @RequestBody final List<String> agentIds,
+            @RequestParam(required = true) Long from,
+            @RequestParam(required = true) Long to)
+
+
+    @Query("SELECT a from alarm_protocol a WHERE a.agentId in ?1 "
+                + "AND a.stStartTime <= ?3 "
+                + "AND (a.stEndTime >= ?2 OR a.stEndTime IS NULL) "
+                + "ORDER BY a.stStartTime DESC")
+    List<AlarmProtocol> findAlarmsByAgentIdsAndTimeRange(Pageable pageable, List<String> agentIds, Long from, Long to);
 ```

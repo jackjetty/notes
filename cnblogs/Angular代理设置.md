@@ -64,6 +64,7 @@ module.exports = PROXY_CONFIG;
 ```
 
         * 定义proxy-settings-factory，包含具体的转发逻辑代码，如附上cookie信息
+            * 可以通过修改logLevel来打印出代码转发的日志，不然不好看，因为这个使用的node.js服务器的模块，调试不起来
 
 ```
 'use strict';
@@ -91,7 +92,7 @@ function proxySettingsFactory(context, regExPattern, url, noProxy = false) {
         secure: false,
         bypass: req => {
             if (new RegExp(regExPattern, 'i').test(req.url)) {
-                req.headers.Cookie = `SESSION=${userConfig.sessionId}; XSRF-TOKEN=${userConfig.xsrfToken}; `;
+                req.headers.cookie = `SESSION=${userConfig.sessionId}; XSRF-TOKEN=${userConfig.xsrfToken}; `;
                 req.headers['X-XSRF-TOKEN'] = userConfig.xsrfToken;
                 req.headers.origin = url;
             }

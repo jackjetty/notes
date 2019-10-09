@@ -17,6 +17,21 @@
         * merge后解决冲突时，你选择选择哪个改动后，并不会影响你已经放到stage中的文件，会在unstage中又放一份新的别人的改动？
     * 在你做commit、pull、push等动作时，右侧树可能会重新调整布局，甚至分支的位置颜色都变了。**这时候就完全重新来观察树就好了。**
     * **文件添加到stage之后，如果再有修改，不会影响stage中的文件，unstage部分会也把这个文件列出来**
+    * revert
+        * 在某个commit节点上右击选择revert commit
+        * **生成一个新的提交来撤销某次提交，此次提交之前的commit都会被保留**
+    * reset xxx to this commit
+        * 在目标commit节点上右击选择reset xxx to this commit，并在子菜单选择想要的回滚方式
+        * **回到某次提交，提交及之前的commit都会被保留，但是此次之后的修改都会被退回到暂存区**
+        * 本意是回滚某个分支的代码到某个commit，但结合不同子选项可以有不同效果
+        * 不管哪种方式，都会把这些修改放到暂存区
+        * ![reset xxx to this commit](https://img2018.cnblogs.com/blog/106125/201909/106125-20190919104629202-499878143.png)
+            * Soft - keep all changes：会把当前commit和想要回滚到的commit之间的改动都保留下来，即还是当前代码，即只是合并了这两个commit之间的多个commit
+            * Mixed - keep working copy but reset index：保留本地代码只移动指针？？
+            * Hard - discard all changes：
+                * 即只保留目标commit的代码？这才是真正的回滚，但是好像不会把改动放到暂存区。
+                * **成功后，所有新于此条 commit 的操作都会被抹去，包括对文件的修改。然后点击上方菜单栏的 push 推到远程仓库，但由于 head 指针滞后，选择 Force 强制把远程项目更为旧版本。**
+                * **注意有时候可能由于目标commit之后有增删文件，导致用这个选项reset后并没有真的推到这个commit，而是把该文件放到了修改区，这时只要把这个修改discard就好了。**
 * 左侧分支树
     * LOCAL下面是所有本地fetch过的分支，及并不是clone时就会把所有分支搞下来
     * REMOTE下面是远程仓库所有的仓库，一般分支都在origin下面
@@ -48,6 +63,7 @@
 
 #2. TortoiseGit
 * 如果有disconnected no supported authentication methods available等错误，一般是要把Settings->Network下的ssh client从TortoiseGit自带的换成本机安装的Git中带的D:\Program Files\Git\usr\bin\ssh.exe
+    * 如果修改不了，可以从开始菜单中找到TortoiseGit后右击以管理员权限运行，再修改保存
 * Stash
     * 和GitKranken不同，可以维护一个Stash list，可以自己起名字
     * 和GitKranken一样，如果本地有增删改的文件，那么在切换分支时会失败，提醒你先stash修改。**但是切换分支不会导致本地多出莫名其妙的修改，GitKranken貌似是把文件带乱套了？**

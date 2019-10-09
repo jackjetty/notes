@@ -1,6 +1,7 @@
 * 基本
     * 在项目根目录下执行ng test命令即执行单元测试
     * 每个component下面的**xxx.component.spec.ts**就是该component对应的单元测试文件
+        * 使用ng generate xxx来生成component时会自动生成.spec.ts单元测试文件，也可以通过指定参数来不让它生成
     * 依赖
         * 如果该component依赖了新的module，即使是配在上级的xxx.module.ts中的，这个xxx.component.spec.ts单元测试文件中也要**单独引用该新module**。
             * 其实这个和java等语言的单元测试一样，单元测试本身不使用项目配置的依赖，而是自己进行引用。

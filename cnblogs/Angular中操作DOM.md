@@ -36,6 +36,7 @@ export class OeeMachineDetailComponent extends NavPageComponent implements OnIni
                 * 可以指定QueryList<any>的具体类型。如果是自己在html元素上加的#xxx，那么可以用any或者ElementRef，后者和@ViewChild得到的对象类型一样，可以通过其nativeElement成员继续操作该DOM元素；如果是自己定义或者引入的Component，那么可以直接是Component的类型名称。
                 * 注意：由于该元素有可能不存在，比如是动态画出来的，所以最好在使用时先判断一下
                 * 注意：**为什么当allAssetTiles元素是根据ngIf来控制是否存在时，用@ViewChildren可以直接操作它，而@ViewChild会报错说未定义？？？**
+                    * 当在ngIf中而@ViewChild取不到该元素时，可以用后面的方式控制其初始化：
 
 ```
 <div #scrollDiv id="scroll-div-showall-screenshot" class="row scroll-div" *ngIf="currentData; else assetoeeloading" infiniteScroll
@@ -66,6 +67,13 @@ export class OeeOverviewComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 }
+```
+
+```
+@ViewChild(MatPaginator)
+  set paginator(value: MatPaginator) {
+    this.dataSource.paginator = value;
+  }
 ```
 
 * 使用ElementRef

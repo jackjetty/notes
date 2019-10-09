@@ -6,6 +6,7 @@
             * ng new 命令会提示你提供要把哪些特性包含在初始应用中。按 Enter 或 Return 键可以接受默认值。
                 * 会让你选择是否使用Angular路由模块。Would you like to add Angular routing?
                 * 会让你选择要使用的样式表格式，通常包含CSS、SCSS、Sass、Less、Stylus。Which stylesheet format would you like to use? (Use arrow keys)
+                    * 可以从SCSS、LESS、CSS中选一个，SCSS功能比较强大
             * Angular CLI 会安装必要的 Angular npm 包和其他依赖包。这可能要花几分钟的时间。
     * 运行/调试应用
         * Angular CLI 中包含一个服务器，方便你在本地构建和提供应用。

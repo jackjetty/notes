@@ -4,7 +4,8 @@
 
 # 2. Java
 * 与.NET版不同，接口、实体类的描述是通过注解去标注的，而不是通过注释（有可能也支持注释的方式？），然后再抽取出这些标注并生成接口文档
-* Swagger UI自己的web页面等，可能直接就在maven引入的jar包中，类似Spring boot的jar包启动方式，也包含页面等文件，解压后可以看到
+* Swagger UI自己的web页面等，直接就在maven引入的jar包中，因此不再需要手动将前端资源拷贝过来，类似Spring boot的jar包启动方式，也包含页面等文件，解压后可以看到。
+* 可以查看官方文档，界面可以定制
 * 访问地址：http://localhost:8081/swagger-ui.html
 * 基本使用
     * pom.xml文件增加依赖并maven update project
@@ -76,10 +77,17 @@ public class BaseResponse {
 ```
 
         * 接口类的注解
-            * @ApiOperation(value = "获取总体趋势", notes = "获取总体趋势")
+            * 接口描述
+                * @ApiOperation(value = "获取总体趋势", notes = "获取总体趋势")
+                * @ApiOperation("Get test info")
+            * 使用@ApiResponses自定义各种Http response的消息体，便于swagger上观察，注意这并不是真实返回的消息体
+                * @ApiResponses(value = { @ApiResponse(code = SC_OK, message = "OK", response = List.class) })
 * 如果想把Swagger功能做成通用的，那么可以把它做成一个注解
+    * 目的
+        * 根据配置变量，来动态使用不同的Config设置
+        * 这些动态的Config设置中具体包含了host的动态设置、title、description、version和info等的动态设置
     * EnableSwaggerSupport接口定义了注解，具体功能来自SwaggerConfig，使用者只需要在spring boot的启动类上加上这个注解，就有了这个功能
-    * SwaggerConfig的具体功能又通过@ComponentScan而包含了来自com.siemens.mindsphere.swaggersupport包下的多个配置类如SwaggerDynamicConfig和SwaggerStaticConfig等？
+    * SwaggerConfig的具体功能又通过@ComponentScan而扫描包含了来自com.siemens.mindsphere.swaggersupport包下的多个配置类如SwaggerDynamicConfig和SwaggerStaticConfig等？
     * 当前服务用SwaggerDynamicConfig还是SwaggerStaticConfig，是根据当前服务的profile来判断的，SwaggerStaticConfig服务于叫"swagger-static"的profile，而SwaggerDynamicConfig服务于其他的profile
     * 而SwaggerDynamicConfig内部，又根据profile是secured还是local，又会有不同的逻辑，下面的例子中是在profile是secured时会动态指定swagger的host为配置文件中的swagger.host，而不是默认的localhost？
     * 还可以根据当前的profile来使用不同的策略
@@ -185,6 +193,8 @@ public class SwaggerStaticConfig {
 ```
 
 * swagger还可以有一些配置可以放到配置文件中
+    * 这些配置是在application.properties中还是自己指定的自定义properties文件中，是SwaggerDynamicConfig的注解上指定的
+    * apiInfo.title等有些配置并不是通用的，而是给SwaggerDynamicConfig等中去使用的
 
 ```
 apiInfo.title=AMP UI Service API

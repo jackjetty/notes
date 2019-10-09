@@ -3,11 +3,13 @@
 * 版本：SNAPSHOT版是快照版，虽然稳定，但还会有更新
 * 创建空项目：https://start.spring.io/上创建下载，然后再从文件系统导入到eclipse或者IDEA中
     * web应用需要在pom.xml中增加依赖spring-boot-starter-web
-    * 可以输入所需要的依赖包
     * 可以选是maven还是gradle项目
     * 可以选语言
     * 可以选spring boot版本
+    * 可以输入所需要的依赖包
+        * 常用的：Lombok、Spring Web、Spring for RabbitMQ、Spring Data JPA、Spring Data Redis (Access+Driver)、PostgreSQL Driver等
 * Spring Tool Suite的New->Project->Spring Boot->Spring Starter Project可以一步一步的创建Spring Boot项目，最终调的还是https://start.spring.io/得接口，其他IDE也是，虽然可以选不同service，但目前都是https://start.spring.io/。
+    * 最终还是用的https://start.spring.io/，会调其接口，如https://start.spring.io/starter.zip?name=SpringBootGradle&groupId=com.jasonwang&artifactId=SpringBootGradle&version=0.0.1-SNAPSHOT&description=Spring+Boot+Common+Modules&packageName=com.jasonwang&type=gradle-project&packaging=jar&javaVersion=1.8&language=java&bootVersion=2.1.8.RELEASE&dependencies=lombok&dependencies=amqp&dependencies=data-redis&dependencies=data-jpa&dependencies=postgresql&dependencies=web
 * Spring Tool Suite中可以打开Boot Dash这个view，集成Cloud Foundry，方便部署。
 
 #2. web项目结构

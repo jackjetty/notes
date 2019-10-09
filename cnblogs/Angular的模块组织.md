@@ -1,5 +1,9 @@
 #1. 概述
 * Angular的页面，是按照module一层层嵌套组织下来的
+* 每一级有component的目录都会有一个xxx.module.ts文件，来指明当前文件夹包含和输出哪些模块，有些类似于项目文件，用于被其他module或component引用。
+* import可以引入component、module（即该module.ts所export的component等？）
+* 根的app-routing.module.ts或其他自定义的路由文件中，可以定义访问路径映射到指定的子module，而app.module.ts只需要引入该路由module即可，如{path: 'dashboard',loadChildren: 'app/dashboard/dashboard.module#DashboardModule'}
+* module文件中的@NgModule中不是什么都可以加的，比如shared.module.ts中就不能有schemas
 
 #2.  风格1
 * **src/**
