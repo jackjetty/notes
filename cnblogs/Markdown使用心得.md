@@ -34,3 +34,5 @@
 * [在线markdown表格生成工具](https://tool.lu/tables)，网上也有工具是直接转换excel表格
 * 编辑器不好找又不用了简书什么的话，可以考虑VS Code，好像不需要安装插件如markdownlint或者Markdown All in One！？VS Code右上角有一个图标可以打开Markdown最终效果显示窗口。
     * VS Code中的Markdown All in One可以辅助编写Markdown文档，有一些快捷键，比如选中表格后可以右击选择格式化，会帮你填充-进行对齐
+* [在线工具网站](http://coolaf.com/tool/md)
+    * 可以用来预览、导出HTML、PDF等格式，进一步可以用来打印
