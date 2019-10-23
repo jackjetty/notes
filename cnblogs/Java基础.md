@@ -5,3 +5,6 @@
 * java程序在根据包名、类名查找类时，靠的是classpath的设置，其指定了源码的根目录，也就是根包所在位置，所以在用命令运行java程序时才需要指定classpath或文件夹路径。而IDE或者Maven、Gradle等项目，会帮你处理这些事情，不再需要手动设置classpath（应该是在Run as或者Debug as的Configuration中的classpath中配置的，默认帮你把当前目录加上了）。
 * 当机器上有多个jdk、jre时，Path环境变量中，谁在前面谁优先。
 * Eclipse、开发过程需要jdk，而不是jre，IDE可以在设置里指定用哪个，但最好还是在环境变量里，把jdk的目录放在前面，避免其他程序和操作系统带的java优先导致错误。
+* 调试java源码
+    * [Java| 调试JDK源码](https://blog.csdn.net/u011479200/article/details/78819323)
+    * 虽然通过在Eclipse的Java Build Path中导入源码（通常是rt.jar），但调试到源码后，会看不到一些变量的值，这是因为jdk里的代码在打包时删除了一些用于调试的信息，以减小安装包的体积。不过可以通过重新编译jdk源代码来恢复此功能。

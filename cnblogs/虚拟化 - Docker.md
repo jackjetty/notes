@@ -16,3 +16,11 @@
         * 可以从Docker Hub等地方下载镜像：可以通过命令Docker pull xxx下载
         * 可以自己制作一个镜像
     * 使用镜像创建/运行容器
+* 命令
+    * 运行容器：docker run -it 镜像名 /bin/bash
+    * 退出容器：exit 或者 Ctrl+P+Q
+    * 查看容器：docker ps -a
+    * 查看运行的容器：docker ps
+    * 重启容器：docker restart 容器ID
+    * 重启容器后进入交互式：docker start -i 5c6ce895b979
+    * 进入容器：docker attach 容器ID 或者 docker exec -it 容器ID /bin/bash
